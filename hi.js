@@ -5,3 +5,5 @@ const selamunAleykum = () => {
 sertac
 
 'hi from DAT-1'
+
+'second commit'
