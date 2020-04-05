@@ -1,3 +1,0 @@
-const everNoteApp = () => {
-  return "Created"
-}
