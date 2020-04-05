@@ -14,38 +14,30 @@ class Editor extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({
-      text: this.props.selectedNote.body,
-      title: this.props.selectedNote.title,
-      id: this.props.selectedNote.id
-    });
+    const { id, title, body : text} = this.props.selectedNote
+    this.setState({ text, title, id });
   }
 
   componentDidUpdate = () => {
-    if(this.props.selectedNote.id !== this.state.id) {
-      this.setState({
-        text: this.props.selectedNote.body,
-        title: this.props.selectedNote.title,
-        id: this.props.selectedNote.id
-      });
+    const { id, title, body : text} = this.props.selectedNote
+    if(id !== this.state.id) {
+    this.setState({ text, title, id });
     }
   }
 
-  updateBody = async (val) => {
-    await this.setState({ text: val });
-    this.update();
+  bodyOnChange = val => {
+    this.setState({ text: val }, () => this.update());
   };
-  updateTitle = async (e) => {
+
+  titleOnChange = e => {
     const title = e.target.value
-    await this.setState({ title });
-    this.update();
+    this.setState({ title }, () => this.update() );
   }
+
   update = debounce(() => {
-    this.props.noteUpdate(this.state.id, {
-      title: this.state.title,
-      body: this.state.text
-    })
-  }, 1500);
+    const { id, title, text: body} = this.state
+    this.props.noteUpdate( id, { title, body })
+}, 1500);
 
 
   render() {
@@ -59,11 +51,11 @@ class Editor extends Component {
           className={titleInput}
           placeholder='Note title...'
           value={title || ''}
-          onChange={this.updateTitle}>
+          onChange={this.titleOnChange}>
         </input>
         <ReactQuill 
           value={text} 
-          onChange={this.updateBody}>
+          onChange={this.bodyOnChange}>
         </ReactQuill>
       </div>
     );
