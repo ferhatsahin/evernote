@@ -1,9 +1,3 @@
-const selamunAleykum = () => {
-  return 'Aleyküm Selam'
+const everNoteApp = () => {
+  return "Created"
 }
-
-sertac
-
-'hi from DAT-1'
-
-'second commit'
