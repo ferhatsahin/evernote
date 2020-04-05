@@ -8,7 +8,7 @@ import { removeHTMLTags } from '../../helpers';
 
 class SidebarItem extends React.Component {
 
-  selectNote = (n, i) => this.props.selectNote(n, i);
+  selectNote = (note, index) => this.props.selectNote(note, index);
   deleteNote = (note) => {
     if(window.confirm(`Are you sure you want to delete: ${note.title}`)) {
       this.props.deleteNote(note);
@@ -16,24 +16,24 @@ class SidebarItem extends React.Component {
   }
 
   render() {
-
-    const { _index, _note, classes, selectedNoteIndex } = this.props;
+    const { index, note, selectedNoteIndex, classes : { listItem, textSection, deleteIcon } } = this.props;
+    const isSelected = index === selectedNoteIndex;
 
     return(
-      <div key={_index}>
+      <div key={index}>
         <ListItem
-          className={classes.listItem}
-          selected={selectedNoteIndex === _index}
+          className={listItem}
+          selected={isSelected}
           alignItems='flex-start'>
             <div 
-              className={classes.textSection}
-              onClick={() => this.selectNote(_note, _index)}>
+              className={textSection}
+              onClick={() => this.selectNote(note, index)}>
                 <ListItemText
-                  primary={_note.title}
-                  secondary={removeHTMLTags(_note.body.substring(0, 30)) + '...'}></ListItemText>
+                  primary={note.title}
+                  secondary={removeHTMLTags(note.body.substring(0, 30)) + '...'}/>
             </div>
-            <DeleteIcon onClick={() => this.deleteNote(_note)}
-              className={classes.deleteIcon}></DeleteIcon>
+            <DeleteIcon onClick={() => this.deleteNote(note)}
+              className={deleteIcon}/>
         </ListItem>
       </div>
     );

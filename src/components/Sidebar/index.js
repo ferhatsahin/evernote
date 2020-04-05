@@ -12,20 +12,23 @@ class Sidebar extends Component {
   }
 
   newNoteBtnClick = () => {
-    this.setState({ title: null, addingNote: !this.state.addingNote });
+    this.setState(({ addingNote }) => ({ title: null, addingNote: !addingNote }));
   }
-  updateTitle = (txt) => {
-    this.setState({ title: txt });
+  updateTitle = (e) => {
+    this.setState({ title: e.target.value });
   }
-  newNote = () => {
-    this.props.newNote(this.state.title);
+  onSubmitNewNote = () => {
+    this.props.onSubmitNewNote(this.state.title);
     this.setState({ title: null, addingNote: false });
   }
-  selectNote = (n, i) => this.props.selectNote(n, i);
+
+  selectNote = (note, index) => this.props.selectNote(note, index);
+  
   deleteNote = (note) => this.props.deleteNote(note);
 
   render() {
     const { notes, classes, selectedNoteIndex } = this.props;
+
     if(!notes) return null;
     return (
       <div className={classes.sidebarContainer}>
@@ -38,27 +41,26 @@ class Sidebar extends Component {
              <input type='text'
                className={classes.newNoteInput}
                placeholder='Enter note title'
-               onKeyUp={(e) => this.updateTitle(e.target.value)}>
+               onKeyUp={this.updateTitle}>
              </input>
              <Button 
                className={classes.newNoteSubmitBtn}
-               onClick={this.newNote}>Submit Note</Button>
+               onClick={this.onSubmitNewNote}>Submit Note</Button>
            </div> :
            null
          }
          <List>
            {
-             notes.map((_note, _index) => {
+             notes.map((note, index) => {
                return(
-                 <div key={_index}>
+                 <div key={index}>
                    <SidebarItem
-                     _note={_note}
-                     _index={_index}
+                     note={note}
+                     index={index}
                      selectedNoteIndex={selectedNoteIndex}
                      selectNote={this.selectNote}
-                     deleteNote={this.deleteNote}>
-                   </SidebarItem>
-                   <Divider></Divider>
+                     deleteNote={this.deleteNote}/>
+                   <Divider/>
                  </div>
                )
              })

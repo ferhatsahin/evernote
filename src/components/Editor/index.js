@@ -55,8 +55,7 @@ class Editor extends Component {
         </input>
         <ReactQuill 
           value={text} 
-          onChange={this.bodyOnChange}>
-        </ReactQuill>
+          onChange={this.bodyOnChange}/>
       </div>
     );
   }
