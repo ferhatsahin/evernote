@@ -1,7 +1,7 @@
 import React from 'react';
-import ListItem from '@material-ui/core/ListItem';
+import classnames from 'classnames'
 import ListItemText from '@material-ui/core/ListItemText';
-import DeleteIcon from '@material-ui/icons/Delete';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import { removeHTMLTags } from '../../helpers';
 
 import './style.scss'
@@ -21,10 +21,7 @@ class SidebarItem extends React.Component {
 
     return(
       <div key={index} className="sidebaritem-wrapper">
-        <ListItem
-          className="list-item"
-          selected={isSelected}
-          alignItems='flex-start'>
+        <li className={classnames('list-item',{'list-item-selected': isSelected})}>
             <div 
               className="text-section"
               onClick={() => this.selectNote(note, index)}>
@@ -32,9 +29,9 @@ class SidebarItem extends React.Component {
                   primary={note.title}
                   secondary={removeHTMLTags(note.body.substring(0, 30)) + '...'}/>
             </div>
-            <DeleteIcon onClick={() => this.deleteNote(note)}
+            <RemoveCircleOutlineIcon onClick={() => this.deleteNote(note)}
               className="delete-icon"/>
-        </ListItem>
+        </li>
       </div>
     );
   }

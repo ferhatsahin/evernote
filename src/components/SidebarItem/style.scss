@@ -3,6 +3,7 @@
   .delete-icon{
     position: absolute;
     right: 5px;
+    color: red;
     top: calc(50% - 15px);
     &:hover{
       color: red;
@@ -11,6 +12,11 @@
   
   .list-item{
     cursor: pointer;
+    padding: 5px 2px;
+    position: relative;
+    &-selected{
+      background-color: #293245;
+    }
   }
   
   .text-section{
