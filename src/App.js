@@ -82,14 +82,12 @@ export default class App extends Component {
         deleteNote={this.deleteNote}
         selectNote={this.selectNote}
         onSubmitNewNote={this.onSubmitNewNote}/>
-      {
-        selectedNote ?
+      { selectedNote &&
         <Editor 
         selectedNote={selectedNote}
         selectedNoteIndex={selectedNoteIndex}
         notes={notes}
         noteUpdate={this.noteUpdate}/>
-        : null
       }
     </div>
     )
