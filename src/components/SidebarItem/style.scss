@@ -1,0 +1,22 @@
+
+.sidebaritem-wrapper{
+  .delete-icon{
+    position: absolute;
+    right: 5px;
+    top: calc(50% - 15px);
+    &:hover{
+      color: red;
+    }
+  }
+  
+  .list-item{
+    cursor: pointer;
+  }
+  
+  .text-section{
+    width: 95%;
+    span,p{
+      color: #eeeeee;
+    }
+  }
+}

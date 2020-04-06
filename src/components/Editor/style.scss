@@ -1,0 +1,31 @@
+.root{
+  background-color: aliceblue;
+  height: calc(100% - 35px);
+  position: absolute;
+  left: 0;
+  width: 300px;
+  box-shadow: 0px 0px 2px black;
+}
+
+.editor-container{
+  height: 100%;
+  box-sizing: border-box;
+  .edit-icon{
+    position: absolute;
+    left: 310px;
+    top: 12px;
+    color: white;
+  }
+
+  .title-input{
+    height: 50px;
+    box-sizing: border-box;
+    border: none;
+    padding: 5px;
+    font-size: 24px;
+    width: calc(100% - 300px);
+    background-color: #29487d;
+    color: white;
+    padding-left: 50px;
+  }
+}
