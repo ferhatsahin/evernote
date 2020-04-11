@@ -38,6 +38,7 @@ export default class App extends Component {
   }
 
   onSubmitNewNote = async (title) => {
+    const { notes } = this.state
     const note = { title: title, body: '' };
     const newFromDB = await firebase
       .firestore()
@@ -47,9 +48,9 @@ export default class App extends Component {
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
     const newID = newFromDB.id;
-    this.setState({ notes: [...this.state.notes, note] }, () => {
-      const newNoteIndex = this.state.notes.indexOf(this.state.notes.filter(_note => _note.id === newID)[0]);
-      this.setState({ selectedNote: this.state.notes[newNoteIndex], selectedNoteIndex: newNoteIndex });
+    this.setState({ notes: [...notes, note] }, () => {
+      const newNoteIndex = notes.indexOf(notes.find(_note => _note.id === newID));
+      this.setState({ selectedNote: notes[newNoteIndex], selectedNoteIndex: newNoteIndex });
     });
   }
 
@@ -83,11 +84,11 @@ export default class App extends Component {
         selectNote={this.selectNote}
         onSubmitNewNote={this.onSubmitNewNote}/>
       { selectedNote &&
-        <Editor 
-        selectedNote={selectedNote}
-        selectedNoteIndex={selectedNoteIndex}
-        notes={notes}
-        noteUpdate={this.noteUpdate}/>
+      <Editor 
+      selectedNote={selectedNote}
+      selectedNoteIndex={selectedNoteIndex}
+      notes={notes}
+      noteUpdate={this.noteUpdate}/>
       }
     </div>
     )
