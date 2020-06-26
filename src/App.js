@@ -4,7 +4,7 @@ import firebase from 'firebase/app'
 import Sidebar from './components/Sidebar';
 import Editor from './components/Editor';
 
-import './app.css'
+import './app.css';
 
 export default class App extends Component {
 
