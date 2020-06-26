@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactQuill from 'react-quill';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
-
-import debounce from '../../helpers'
+import { debounce } from 'lodash/debounce'
 
 import './style.scss'
 
